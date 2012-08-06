@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service  name="TerminologyService">
+	<description>InformationSearch</description>
+	<parameter name="ServiceClass">
+		InformationSearch.TermService
+	</parameter>
+	<operation name="get_Term">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>				
+</service>
