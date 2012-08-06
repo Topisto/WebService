@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="LocationService">
+	<description>This service implements a method to search for servers which are able to resolve a provided registration identifier</description>
+	<parameter name="ServiceClass">
+		locationServicePackage.SourceIdentificationProvider
+	</parameter>
+	<operation name="get_source_identification">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>
+</service>
