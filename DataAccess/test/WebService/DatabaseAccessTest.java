@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class DatabaseAccessTest
 {
 	/**
-	 * Validates if IRDI = "Id="112-5" return one terminolog and one ontology server. 
+	 * Validates if Preferred_Name = '0173-1#01-AAF577#3' return 'Propylmethacrylsäurepolymer'. 
 	 */
 	@Test 
 	public void GetPrefferedName()
