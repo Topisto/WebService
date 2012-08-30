@@ -23,13 +23,7 @@ public class DatabaseAccess implements IDisposable
 		try
 		{
 			DriverManager.registerDriver( driver );
-
-			//Context initContext = new InitialContext();
-			//Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			//DataSource ds = (DataSource)envContext.lookup("jdbc/XE");
-			//_connection = ds.getConnection();
-
-			_connection = DriverManager.getConnection( "jdbc:oracle:thin:@localhost:1521:XE", "Workdemo", "admin"  );
+     		_connection = DriverManager.getConnection( "jdbc:oracle:thin:@localhost:1521:XE", "Workdemo", "admin"  );
 			return  _connection.createStatement();
 		}
 		catch (SQLException exception)
