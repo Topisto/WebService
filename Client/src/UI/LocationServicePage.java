@@ -10,24 +10,39 @@ import javax.swing.*;
 
 import org.netbeans.spi.wizard.WizardPage;
 
+import ExceptionHandler.invalid_identifier_exception;
 import LocationService.source_identification;
-import WebServiceClient.Communication;
+import WebServiceClient.SourceIdentificationSearch;
 
+/**
+ *<p>Implementation of the Web service according to the ISO 29002-20</p>
+ * @author Sandra Janßen
+ * @version 1.0
+ * 
+ * Initialize the location service page
+  */
 public class LocationServicePage extends WizardPage
 {
 	private static final long serialVersionUID = 4008301137502406913L;
 	private JTextField _raiTextField;
 	private JTextField _eprTextField;
 	private DefaultListModel _model;
-
 	private JList _decisionList;
 
+	/**
+	* Constructor, which creates a new location service page. 
+	*/ 
 	public LocationServicePage() 
 	{
 		super( "Location Service" );
 	    initComponents();
 	}
 	
+	/**
+	* Gets the current step.
+	*
+	* @return String
+	*/ 
 	public static String getStep()
 	{
 		return "LocationServicePage"; 
@@ -40,8 +55,7 @@ public class LocationServicePage extends WizardPage
 		raiPanel.add( new JLabel( "Irdi" ) );
 		_raiTextField = new JTextField( 40 );
 		_raiTextField.setName( "raiTextField" );
-		_raiTextField.setText( "0173-1#01-AAF577#3" );
-	    WizardSettings.SetIrdi("0173-1#01-AAF577#3" );
+		_raiTextField.setText( "0173-1" );
 	    raiPanel.add( _raiTextField );
 	    add( raiPanel, BorderLayout.NORTH );
 	    
@@ -67,18 +81,39 @@ public class LocationServicePage extends WizardPage
 	        {
 	    		try
 	    	   	{
-	    			Communication client = new Communication();
+	    			SourceIdentificationSearch client = new SourceIdentificationSearch();
 	    			source_identification sourceIdentification = client.GetSourceIdentification( _raiTextField.getText(), _eprTextField.getText() );
+	    			WizardSettings.SetRegistrationAuthorityIdentifier(_raiTextField.getText());
+	    			
 	    			if( sourceIdentification != null)
 	    			{
-		    			_model.add(0, sourceIdentification.getTerminologyServer());
-		    			_model.add(1, sourceIdentification.getOntologyServer());
+	    				if( sourceIdentification.getTerminology_server_URI() == null && 
+	    						sourceIdentification.getOntology_server_URI() == null) 
+	    				{
+	    					 JOptionPane.showMessageDialog( null, "Der LocationService lieferte keinen Server",
+	   		    				  "Error", JOptionPane.ERROR_MESSAGE);
+	    				}
+	    				else
+	    				{
+	    					if(sourceIdentification.getTerminology_server_URI() != null)
+	    					{
+		    					_model.add(0, sourceIdentification.getTerminology_server_URI());
+	    					}
+	    					if( sourceIdentification.getOntology_server_URI() != null)
+	    					{	    					
+	    						_model.add(1, sourceIdentification.getOntology_server_URI());
+	    					}
+	    				}
 	    			}
-	    			
+	    		}
+	    		catch( invalid_identifier_exception exception)
+	    		{
+	    		  JOptionPane.showMessageDialog( null, "Bitte geben Sie einen gültigen RegistrationAuthorityIdentifer ein: " + exception.getError_message(),
+	    				  "Error", JOptionPane.ERROR_MESSAGE);
 	    		}
 	    		catch( Exception exception )
 	    		{
-	    			JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	    			JOptionPane.showMessageDialog(null, exception.getMessage() + exception.getCause(), "Error", JOptionPane.ERROR_MESSAGE);
 	    		} 
 	        }
 	      }
@@ -102,7 +137,7 @@ public class LocationServicePage extends WizardPage
 	      String service = _decisionList.getSelectedValue().toString();
 	      if( service.endsWith("TerminologyService"))
 	      {
-	    	  WizardSettings.SetTerminologyServer(_decisionList.getSelectedValue().toString());	
+	    	 WizardSettings.SetTerminologyServer(_decisionList.getSelectedValue().toString());	
 	      }
 	      else
 	      {
@@ -112,6 +147,11 @@ public class LocationServicePage extends WizardPage
 	    }
 	 }
 	
+	/**
+	* Gets the description of the page.
+	*
+	* @return String
+	*/ 
 	public static final String getDescription() 
 	{
 	    return "Location Service" + getStep(); 

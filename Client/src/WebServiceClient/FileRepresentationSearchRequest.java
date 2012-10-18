@@ -1,19 +1,34 @@
 package WebServiceClient;
 
-import ExceptionHandler.ImplementationException;
-import Irdi.IRDI;
-import TerminologyModel.file_representation;
+import Irdi.IRDI_type;
+import TerminologyModel.file_representation_Type;
 
+/**
+ *<p>Implementation of the Web service according to the ISO 29002-20</p>
+ * @author Sandra Janﬂen
+ * @version 1.0
+ * 
+ * This class implements the abbreviation search request. 
+ */
 public class FileRepresentationSearchRequest extends InformationSearchRequest
 {
+	/**
+     * The default constructor.
+     */
 	public FileRepresentationSearchRequest()
 	{
 		
 	}
 	
-	public FileRepresentationSearchRequest( IRDI searchValue, String targetEndpointReference) throws ImplementationException
+	/**
+     * The constructor initialize the typed parameter for the search request
+     * 
+	* @param irdi: The IRDI. 
+	* @param targetEndpointReference: The URL of the server.
+     */
+	public FileRepresentationSearchRequest( IRDI_type searchValue, String targetEndpointReference) 
 	{
-		super( searchValue, targetEndpointReference, file_representation.class );
+		super( searchValue, targetEndpointReference, file_representation_Type.class );
 	}
 
 

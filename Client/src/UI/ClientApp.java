@@ -11,22 +11,25 @@ import WebServiceLogging.WebServiceLogger;
 
 
 /**
- *
+ *<p>Implementation of the Web service according to the ISO 29002-20</p>
+ * @author Sandra Janﬂen
+ * @version 1.0
+ * 
  * Main-class: Starts the client application
- *
- */
+  */
 public class ClientApp
 {
 	/**
-	 * Main-method: Initializes the logger and starts the client wizard application
+	 * Main-method: Initializes the logger and creates the client wizard application
+	 * 
 	 * @param args
+	 * @throws exception
 	 */
 	public static void main(String[] args) throws Exception 
 	{
 	    try 
 	    {
 	    	WebServiceLogger.Log("ClientApp.java", "main", "Start application");
-		    // the following statement is used to log any messages   
 		    UIManager.setLookAndFeel( UIManager.getSystemLookAndFeelClassName() );
 			ClientWizard brancher = new ClientWizard(); 
 			Wizard wizard = brancher.createWizard();
