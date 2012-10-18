@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service name="LocationService">
-	<description>This service implements a method to search for servers which are able to resolve a provided registration identifier</description>
+	<description>Provides the operations of the location service according to ISO29002-20</description>
 	<parameter name="ServiceClass">
 		locationServicePackage.SourceIdentificationProvider
 	</parameter>

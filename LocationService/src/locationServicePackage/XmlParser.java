@@ -1,7 +1,6 @@
 package locationServicePackage;
 
-import ExceptionHandler.ImplementationException;
-import Irdi.RegistrationAuthorityIdentifier;
+import ExceptionHandler.implementation_exception;
 import LocationService.source_identification;
 
 import java.io.File;
@@ -12,6 +11,10 @@ import org.w3c.dom.Document;
 import javax.xml.xpath.XPathConstants;
 import org.w3c.dom.*;
 
+/**
+ * This class searches for a provided regration authority identifier for terminology and ontology server 
+ * in the ProductOntologyProvider.xml (which is located in „%AppData%\WebServce\LocationService)
+*/
 public class XmlParser
 {
 	private String _registrationAuthorityIdentifier;
@@ -19,17 +22,17 @@ public class XmlParser
 	private Document _xmlDocument;
 	private XPath xPath;
 	
-	protected XmlParser( RegistrationAuthorityIdentifier registrationAuthorityIdentifier ) throws ImplementationException
+	protected XmlParser( String registrationAuthorityIdentifier ) throws implementation_exception
 	{
-		_registrationAuthorityIdentifier = registrationAuthorityIdentifier.getRegistrationAuthorityIdentifierValue();
+		_registrationAuthorityIdentifier = registrationAuthorityIdentifier;
 		_xmlFile = GetXmlPath();	
 		InitObjects();
 	}
 	
 	/**
-	 * Initialize objects for parsing through the given XML file
+	 * Initialize XmlDocument and XPath for parsing through the given XML file
 	*/
-	private void InitObjects() throws ImplementationException
+	private void InitObjects() throws implementation_exception
     {        
         try 
         {
@@ -38,26 +41,28 @@ public class XmlParser
         } 
         catch( Exception exception )
         {
-           throw new ImplementationException( exception.getMessage(), exception.getStackTrace().toString());
+        	throw new implementation_exception( String.format("ErrorMessage: %n Stacktrace: %n", exception.getMessage(), exception.getStackTrace()), 0 ) ;
         }
       }
 	
 	/**
 	 * Returns all URI of the given registration authority identifier as SourceIdentification object
 	 * @return SourceIdentification 
-	 * @throws ImplementationException 
+	 * @throws implementation_exception 
 	*/
-	 protected source_identification GetSourceIdentificationList() throws ImplementationException
+	 protected source_identification GetSourceIdentificationList() throws implementation_exception
 	{
 		try
 		{
-			String terminologyServerURI = FindServerUri( "TerminologyServer");
-			String ontologyServerURI = FindServerUri( "OntologyServer");
-     		return new source_identification( _registrationAuthorityIdentifier, terminologyServerURI, ontologyServerURI );
+			source_identification identification = new source_identification();
+			identification.setRA_ref(_registrationAuthorityIdentifier);		
+			identification.setTerminology_server_URI(FindServerUri( "TerminologyServer"));
+			identification.setOntology_server_URI(FindServerUri( "OntologyServer"));
+		   return identification;
 		}
 		catch( Exception exception )
 		{
-			throw new ImplementationException( exception.getMessage(), exception.getStackTrace().toString());
+			throw new implementation_exception( String.format("ErrorMessage: %n Stacktrace: %n", exception.getMessage(), exception.getStackTrace()), 1 ) ;
 		}
 	}
 	
@@ -65,9 +70,9 @@ public class XmlParser
 	 * Returns the URI of the given server which corresponds to the registration authority identifier
 	 * If an empty string is provided, the first found server is returned 
 	 * @return String 
-	 * @throws ImplementationException 
+	 * @throws implementation_exception 
 	*/
-	 protected String FindServerUri( String expression ) throws ImplementationException
+	 protected String FindServerUri( String expression ) throws implementation_exception
 	{
 		String serverExpression = String.format( "/LocationService/Suppliers/%s/Supplier", expression );
         NodeList serverNodeList = (NodeList) Read( serverExpression, XPathConstants.NODESET);
@@ -83,6 +88,7 @@ public class XmlParser
         		 return (String) Read( uriExpression, XPathConstants.STRING);
         	}
         }
+        
        return null;
 	}
 	
@@ -90,9 +96,9 @@ public class XmlParser
 	/**
 	 * Returns the xml node of the given expression
 	 * @return Object 
-	 * @throws ImplementationException 
+	 * @throws implementation_exception 
 	*/
-	 private Object Read( String expression, QName returnType ) throws ImplementationException
+	 private Object Read( String expression, QName returnType ) throws implementation_exception
     {
         try 
         {
@@ -101,7 +107,7 @@ public class XmlParser
         } 
         catch( Exception exception )
         {
-        	throw new ImplementationException( exception.getMessage(), exception.getStackTrace().toString());
+        	throw new implementation_exception( String.format("ErrorMessage: %n Stacktrace: %n", exception.getMessage(), exception.getStackTrace()), 2 ) ;
         }
     }
 

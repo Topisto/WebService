@@ -1,13 +1,17 @@
 package locationServicePackage;
 
 import static org.junit.Assert.*;
+
 import locationServicePackage.XmlParser;
 
 import org.junit.Test;
 
-import ExceptionHandler.InvalidIdentifierException;
-import Irdi.RegistrationAuthorityIdentifier;
+import ExceptionHandler.invalid_identifier_exception;
+import Irdi.IRDI_type;
 
+/**
+ * Tests the correct parsing of the LocationService.xml 
+*/
 public class XmlParserTest
 {
 	/**
@@ -16,15 +20,14 @@ public class XmlParserTest
 	@Test 
 	public void FindTerminologyServerUri()
 	{
-		RegistrationAuthorityIdentifier identifier = new RegistrationAuthorityIdentifier();
 		try
 		{
-			identifier.Validate( "112-5" );
-			XmlParser xmlParser = new XmlParser( identifier );
+			IRDI_type identifier = new IRDI_type("112-5", true);
+			XmlParser xmlParser = new XmlParser( identifier.getRegistrationAuthorityIdentifier() );
 			String server = xmlParser.FindServerUri("TerminologyServer");
 			assertEquals( "http://localhost:7779/axis2/services/TerminologyService", server );
 		}
-		catch( InvalidIdentifierException exception )
+		catch( invalid_identifier_exception exception )
 		{
 			fail( exception.getMessage() );
 		}
@@ -40,15 +43,14 @@ public class XmlParserTest
 	@Test 
 	public void FindOntologyServerUri()
 	{
-		RegistrationAuthorityIdentifier identifier = new RegistrationAuthorityIdentifier();
 		try
 		{
-			identifier.Validate( "112-5" );
-			XmlParser xmlParser = new XmlParser( identifier );
+			IRDI_type identifier = new IRDI_type("112-5", true );
+			XmlParser xmlParser = new XmlParser( identifier.getRegistrationAuthorityIdentifier() );
 			String server = xmlParser.FindServerUri("OntologyServer");
 			assertEquals( "http://localhost:7779/axis2/services/OntologyService", server );
 		}
-		catch( InvalidIdentifierException exception )
+		catch( invalid_identifier_exception exception )
 		{
 			fail( exception.getMessage() );
 		}
@@ -64,15 +66,14 @@ public class XmlParserTest
 	@Test 
 	public void FindEmptyStringAsUri()
 	{
-		RegistrationAuthorityIdentifier identifier = new RegistrationAuthorityIdentifier();
 		try
 		{
-			identifier.Validate( "112-5" );
-			XmlParser xmlParser = new XmlParser( identifier );
+			IRDI_type identifier = new IRDI_type("112-5", true);
+			XmlParser xmlParser = new XmlParser( identifier.getRegistrationAuthorityIdentifier() );
 			String server = xmlParser.FindServerUri("");
 			assertEquals( "http://localhost:7779/axis2/services/TerminologyService", server );
 		}
-		catch( InvalidIdentifierException exception )
+		catch( invalid_identifier_exception exception )
 		{
 			fail( exception.getMessage() );
 		}
@@ -88,15 +89,14 @@ public class XmlParserTest
 	@Test 
 	public void FindNullAsUri()
 	{
-		RegistrationAuthorityIdentifier identifier = new RegistrationAuthorityIdentifier();
 		try
 		{
-			identifier.Validate( "112-5" );
-			XmlParser xmlParser = new XmlParser( identifier );
+			IRDI_type identifier = new IRDI_type("112-5", true);
+			XmlParser xmlParser = new XmlParser( identifier.getRegistrationAuthorityIdentifier() );
 			String server = xmlParser.FindServerUri(null);
-			assertNull( server );
+			assertEquals(null, server);
 		}
-		catch( InvalidIdentifierException exception )
+		catch( invalid_identifier_exception exception )
 		{
 			fail( exception.getMessage() );
 		}
