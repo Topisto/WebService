@@ -1,10 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service  name="TerminologyService">
-	<description>InformationSearch</description>
+	<description>Provides the operations of the terminology service according to ISO29002-20</description>
 	<parameter name="ServiceClass">
-		InformationSearch.TermService
+		InformationSearch.TerminologyServiceProvider
 	</parameter>
-	<operation name="get_Term">
+	<operation name="get_abbreviation">
 		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
-	</operation>				
+	</operation>		
+	<operation name="get_concept">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>	
+	<operation name="get_concept_deep">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>	
+	<operation name="get_concept_equivalence_relationship">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>	
+	<operation name="get_concept_type">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>	
+	<operation name="get_definition">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>	
+	<operation name="get_document">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>		
+	<operation name="get_file_representation">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>		
+	<operation name="get_graphic_file_URL">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>		
+	<operation name="get_image">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>		
+	<operation name="get_language">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>		
+	<operation name="get_organization">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>	
+	<operation name="get_symbol">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>						
+	<operation name="get_term">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>	
+	<operation name="search_concept">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>		
+	<operation name="search_document">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>		
+	<operation name="search_language">
+		<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</operation>		
 </service>
