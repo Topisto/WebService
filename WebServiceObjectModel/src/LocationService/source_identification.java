@@ -1,88 +1,105 @@
 package LocationService;
 
+/**
+ * <p>Implementation of the Web service according to the ISO 29002-20</p>
+ * @author Sandra Janﬂen
+ * @version 1.0
+ * 
+ * 
+ * Represents the implementation of the location of the terminology server and the ontology 
+ * server for a given concept
+ */
 public class source_identification implements java.io.Serializable 
 {
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = -3023161769850781341L;
-	private String provider;
-	private String terminologyServer;
-	private String ontologyServer;
+	private String RA_ref;
+	private String terminology_server_URI;
+	private String ontology_server_URI;
 
+	/**
+     * Axis needs a default constructor.
+     */
     public source_identification() 
     {
     }
 
-    public source_identification( String provider, String terminologyServer, String ontologyServer) 
-    {
-    	this.provider = provider;
-        this.terminologyServer = terminologyServer;
-        this.ontologyServer = ontologyServer;
-    }
-
-    /**
-     * Gets the provider value for this SourceIdentification.
+    
+   	/**
+     * Constructor for initalizing the properties.
      * 
-     * @return provider
+     * @param RA_ref: The unambiguous identifier of the dictionary registration authority. 
+     * @param terminology_server_URI: The uniform resource identifier of the terminology server for the concept.
+     * @param ontology_server_URI: The uniform resource identifier of the ontology server for the concept.
      */
-    public String getProvider() 
+     public source_identification( String RA_ref, String terminology_server_URI, String ontology_server_URI) 
     {
-        return this.provider;
+    	setRA_ref(RA_ref);
+    	setTerminology_server_URI(terminology_server_URI);
+    	setOntology_server_URI(ontology_server_URI);
     }
-
-
+    
     /**
-     * Sets the provider value for this SourceIdentification.
+     * Gets the unambiguous identifier of the dictionary registration authority.
      * 
-     * @param provider
+     * @return RA_ref
      */
-    public void setProvider( String provider) 
+    public String getRA_ref() 
     {
-        this.provider = provider;
+        return this.RA_ref;
     }
 
 
     /**
-     * Gets the terminologyServer value for this SourceIdentification.
+     * Sets the unambiguous identifier of the dictionary registration authority.
      * 
-     * @return terminologyServer
+     * @param RA_ref
      */
-    public String getTerminologyServer() 
+    public void setRA_ref( String RA_ref) 
     {
-        return this.terminologyServer;
+        this.RA_ref = RA_ref;
     }
 
 
     /**
-     * Sets the terminologyServer value for this SourceIdentification.
+     * Gets the uniform resource identifier of the terminology server for the concept.
      * 
-     * @param terminologyServer
+     * @return terminology_server_URI
      */
-    public void setTerminologyServer(String terminologyServer) 
+    public String  getTerminology_server_URI() 
     {
-        this.terminologyServer = terminologyServer;
+        return this.terminology_server_URI;
     }
 
 
     /**
-     * Gets the ontologyServer value for this SourceIdentification.
+     * Sets the uniform resource identifier of the terminology server for the concept.
      * 
-     * @return ontologyServer
+     * @param terminology_server_URI
      */
-    public String getOntologyServer() 
+    public void setTerminology_server_URI(String  terminology_server_URI) 
     {
-        return this.ontologyServer;
+        this.terminology_server_URI = terminology_server_URI;
     }
 
 
     /**
-     * Sets the ontologyServer value for this SourceIdentification.
+     * Gets the uniform resource identifier of the ontology server for the concept.
      * 
-     * @param ontologyServer
+     * @return ontology_server_URI
      */
-    public void setOntologyServer(String ontologyServer)
+    public String  getOntology_server_URI() 
     {
-        this.ontologyServer = ontologyServer;
+        return this.ontology_server_URI;
+    }
+
+
+    /**
+     * Sets the uniform resource identifier of the ontology server for the concept.
+     *      * 
+     * @param ontology_server_URI
+     */
+    public void setOntology_server_URI(String  ontology_server_URI)
+    {
+        this.ontology_server_URI = ontology_server_URI;
     }
 }

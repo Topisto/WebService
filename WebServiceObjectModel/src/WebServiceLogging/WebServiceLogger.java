@@ -8,6 +8,10 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 /**
+ * <p>Implementation of the Web service according to the ISO 29002-20</p>
+ * @author Sandra Janﬂen
+ * @version 1.0
+ * 
  * Implementation of application wide logger 
  */
 public class WebServiceLogger
@@ -44,7 +48,11 @@ public class WebServiceLogger
 	
 	/**
 	 * Logs the provided message
-	 * @param sourceClass, sourceMethod, message
+	 * 
+	 * @param sourceClass
+	 * @param sourceMethod
+	 * @param message
+	 * 
 	 * @throws IOException 
 	 */
 	static public void Log(String sourceClass, String sourceMethod, String message) 

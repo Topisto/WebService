@@ -1,217 +1,155 @@
-/**
- * RepresentationForm.java
- *
- */
-
 package TerminologyModel;
 
+import Irdi.IRDI_type;
+
+/**
+ * <p>Implementation of the Web service according to the ISO 29002-20</p>
+ * @author Sandra Janﬂen
+ * @version 1.0
+ * 
+ * Represents the description of a format for representing ontology information about a concept. 
+ */
 public class representation_form  implements java.io.Serializable
 {
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 3635609176861097019L;
 
-	private local_string[] name;
+	private String _asn1Identifier;
+	private String _controllingDocumentRef;
+	private String _name;
+	private IRDI_type _representation_Form_ID;
+	private String _representation_Form_URI;
 
-    private java.lang.String controllingDocument;
-
-    private java.lang.String asn1Identifier;
-
-    private String urn;
-
-    private String id;  // attribute
-
+	/**
+     * Axis needs a default constructor.
+     */
     public representation_form() 
     {
     }
 
-    public representation_form(
-           local_string[] name,
-           String controllingDocument,
-           String asn1Identifier,
-           String urn,
-           String id)
-    {
-           this.name = name;
-           this.controllingDocument = controllingDocument;
-           this.asn1Identifier = asn1Identifier;
-           this.urn = urn;
-           this.id = id;
-    }
-
-
-    /**
-     * Gets the name value for this RepresentationForm.
+   	/**
+     * Constructor for initalizing the properties.
      * 
-     * @return name
+     * @param asn1Identifier: ASN.1 identifier of the representation form. 
+     * @param controllingDocumentRef: Unambiguous identifier of the document that normatively specifies the 
+     * syntax and semantics of the representation form. 
+     * @param name: Word or sequence of words by which the representation form is known.  
+     * @param representation_Form_ID: Unambiguous identifier of this representation form. 
+     * @param representation_Form_URI: Uniform resource identifier of this representation form. 
      */
-    public local_string[] getName()
+    public representation_form(String asn1Identifier, String controllingDocumentRef, String name, 
+    		IRDI_type representation_Form_ID, String representation_Form_URI)
     {
-        return name;
+    	_asn1Identifier = asn1Identifier;
+    	_controllingDocumentRef = controllingDocumentRef;
+    	_name = name;
+    	_representation_Form_ID = representation_Form_ID;
+    	_representation_Form_URI = representation_Form_URI;
     }
-
-
+    
     /**
-     * Sets the name value for this RepresentationForm.
+     * Gets the ASN.1 identifier of the representation form. 
      * 
-     * @param name
-     */
-    public void setName( local_string[] name) 
-    {
-        this.name = name;
-    }
-
-
-    /**
-     * Gets the controllingDocument value for this RepresentationForm.
-     * 
-     * @return controllingDocument
-     */
-    public String getControllingDocument() 
-    {
-        return controllingDocument;
-    }
-
-
-    /**
-     * Sets the controllingDocument value for this RepresentationForm.
-     * 
-     * @param controllingDocument
-     */
-    public void setControllingDocument( String controllingDocument) 
-    {
-        this.controllingDocument = controllingDocument;
-    }
-
-
-    /**
-     * Gets the asn1Identifier value for this RepresentationForm.
-     * 
-     * @return asn1Identifier
+     * @return String
      */
     public String getAsn1Identifier() 
     {
-        return asn1Identifier;
+        return _asn1Identifier;
     }
 
 
     /**
-     * Sets the asn1Identifier value for this RepresentationForm.
+     * Sets the ASN.1 identifier of the representation form. 
      * 
      * @param asn1Identifier
      */
     public void setAsn1Identifier(String asn1Identifier)
     {
-        this.asn1Identifier = asn1Identifier;
+        _asn1Identifier = asn1Identifier;
+    }
+    
+    /**
+     * Gets the unambiguous identifier of the document that normatively specifies the 
+     * syntax and semantics of the representation form. 
+     * 
+     * @return String
+     */
+    public String getControllingDocumentRef() 
+    {
+        return _controllingDocumentRef;
     }
 
 
     /**
-     * Gets the urn value for this RepresentationForm.
+     * Sets the unambiguous identifier of the document that normatively specifies the 
+     * syntax and semantics of the representation form. 
      * 
-     * @return urn
+     * @param controllingDocumentRef
      */
-    public String getUrn() 
+    public void setControllingDocumentRef(String controllingDocumentRef) 
     {
-        return urn;
+    	_controllingDocumentRef = controllingDocumentRef;
+    }
+    
+
+    /**
+     * Gets the word or sequence of words by which the representation form is known.  
+     * 
+     * @return String
+     */
+    public String getName()
+    {
+        return _name;
+    }
+
+    /**
+     * Sets the word or sequence of words by which the representation form is known.  
+     * 
+     * @param name
+     */
+    public void setName(String name) 
+    {
+        _name = name;
+    }
+
+    
+    /**
+     * Gets the uniform resource identifier of this representation form. 
+     * 
+     * @return String
+     */
+    public String get_representation_Form_URI() 
+    {
+        return _representation_Form_URI;
     }
 
 
     /**
-     * Sets the urn value for this RepresentationForm.
+     * Sets the uniform resource identifier of this representation form. 
      * 
-     * @param urn
+     * @param representation_Form_URI
      */
-    public void setUrn(String urn) 
+    public void set_representation_Form_URI(String representation_Form_URI) 
     {
-        this.urn = urn;
+    	_representation_Form_URI = representation_Form_URI;
     }
-
 
     /**
-     * Gets the id value for this RepresentationForm.
+     * Gets the unambiguous identifier of this representation form.
      * 
-     * @return id
+     * @return IRDI_type
      */
-    public String getId() 
+    public IRDI_type get_representation_Form_ID() 
     {
-        return id;
+        return _representation_Form_ID;
     }
-
 
     /**
-     * Sets the id value for this RepresentationForm.
+     * Sets the unambiguous identifier of this representation form.
      * 
-     * @param id
+     * @param representation_Form_ID
      */
-    public void setId(String id) 
+    public void set_representation_Form_ID(IRDI_type representation_Form_ID) 
     {
-        this.id = id;
-    }
-
-    private java.lang.Object __equalsCalc = null;
-    public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof representation_form)) return false;
-        representation_form other = (representation_form) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
-        }
-        __equalsCalc = obj;
-        boolean _equals;
-        _equals = true && 
-            ((this.name==null && other.getName()==null) || 
-             (this.name!=null &&
-              java.util.Arrays.equals(this.name, other.getName()))) &&
-            ((this.controllingDocument==null && other.getControllingDocument()==null) || 
-             (this.controllingDocument!=null &&
-              this.controllingDocument.equals(other.getControllingDocument()))) &&
-            ((this.asn1Identifier==null && other.getAsn1Identifier()==null) || 
-             (this.asn1Identifier!=null &&
-              this.asn1Identifier.equals(other.getAsn1Identifier()))) &&
-            ((this.urn==null && other.getUrn()==null) || 
-             (this.urn!=null &&
-              this.urn.equals(other.getUrn()))) &&
-            ((this.id==null && other.getId()==null) || 
-             (this.id!=null &&
-              this.id.equals(other.getId())));
-        __equalsCalc = null;
-        return _equals;
-    }
-
-    private boolean __hashCodeCalc = false;
-    public synchronized int hashCode() {
-        if (__hashCodeCalc) {
-            return 0;
-        }
-        __hashCodeCalc = true;
-        int _hashCode = 1;
-        if (getName() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getName());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getName(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
-        if (getControllingDocument() != null) {
-            _hashCode += getControllingDocument().hashCode();
-        }
-        if (getAsn1Identifier() != null) {
-            _hashCode += getAsn1Identifier().hashCode();
-        }
-        if (getUrn() != null) {
-            _hashCode += getUrn().hashCode();
-        }
-        if (getId() != null) {
-            _hashCode += getId().hashCode();
-        }
-        __hashCodeCalc = false;
-        return _hashCode;
+    	_representation_Form_ID = representation_Form_ID;
     }
 }

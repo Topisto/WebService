@@ -1,154 +1,103 @@
-/**
- * SourceLocation.java
- *
- */
-
 package TerminologyModel;
 
+/**
+ * <p>Implementation of the Web service according to the ISO 29002-20</p>
+ * @author Sandra Janﬂen
+ * @version 1.0
+ * 
+ * Represents the location on the internet at which a terminological item may be found. 
+ */
 public class source_location  implements java.io.Serializable 
 {
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 54050194936033495L;
 
-	private String url;
+	private String _url;
+    private String _description;
+    private organization_Type _provider;
 
-    private local_string[] description;
-
-    private String provider;
-
+	/**
+     * Axis needs a default constructor.
+     */
     public source_location() 
     {
     }
 
-    public source_location(
-           String url,
-           local_string[] description,
-           String provider) 
-    {
-           this.url = url;
-           this.description = description;
-           this.provider = provider;
-    }
-
-
-    /**
-     * Gets the url value for this SourceLocation.
+   	/**
+     * Constructor for initalizing the properties.
      * 
-     * @return url
+     * @param url: Uniform resource locator at which the terminological item may be found. 
+     * @param description: Human-readable designation of the source location. 
+     * @param provider: Organization that provides a terminological item at a location on the internet. 
      */
-    public String getUrl() 
+    public source_location(String url, String description, organization_Type provider) 
     {
-        return url;
+    	_url = url;
+    	_description = description;
+    	_provider = provider;
     }
 
 
     /**
-     * Sets the url value for this SourceLocation.
+     * Gets the uniform resource locator at which the terminological item may be found. 
      * 
-     * @param url
+     * @return String
      */
-    public void setUrl(String url) 
+    public String getURL() 
     {
-        this.url = url;
+        return _url;
     }
 
 
     /**
-     * Gets the description value for this SourceLocation.
+     * Sets the uniform resource locator at which the terminological item may be found. 
      * 
-     * @return description
+     * @param URL
      */
-    public local_string[] getDescription() 
+    public void setURL(String url) 
     {
-        return description;
+    	_url = url;
     }
 
 
     /**
-     * Sets the description value for this SourceLocation.
+     * Gets the human-readable designation of the source location. 
+     * 
+     * @return String
+     */
+    public String getDescription() 
+    {
+        return _description;
+    }
+
+    /**
+     * Sets the human-readable designation of the source location. 
      * 
      * @param description
      */
-    public void setDescription(local_string[] description) 
+    public void setDescription(String description) 
     {
-        this.description = description;
+        _description = description;
     }
 
 
     /**
-     * Gets the provider value for this SourceLocation.
+     * Gets the organization that provides a terminological item at a location on the internet. 
      * 
-     * @return provider
+     * @return organization_Type
      */
-    public java.lang.String getProvider() 
+    public organization_Type getProvider() 
     {
-        return provider;
+        return _provider;
     }
 
 
     /**
-     * Sets the provider value for this SourceLocation.
+     * Sets the organization that provides a terminological item at a location on the internet. 
      * 
      * @param provider
      */
-    public void setProvider(java.lang.String provider)
+    public void setProvider(organization_Type provider)
     {
-        this.provider = provider;
-    }
-
-    private java.lang.Object __equalsCalc = null;
-    public synchronized boolean equals(java.lang.Object obj) 
-    {
-        if (!(obj instanceof source_location)) return false;
-        source_location other = (source_location) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
-        }
-        __equalsCalc = obj;
-        boolean _equals;
-        _equals = true && 
-            ((this.url==null && other.getUrl()==null) || 
-             (this.url!=null &&
-              this.url.equals(other.getUrl()))) &&
-            ((this.description==null && other.getDescription()==null) || 
-             (this.description!=null &&
-              java.util.Arrays.equals(this.description, other.getDescription()))) &&
-            ((this.provider==null && other.getProvider()==null) || 
-             (this.provider!=null &&
-              this.provider.equals(other.getProvider())));
-        __equalsCalc = null;
-        return _equals;
-    }
-
-    private boolean __hashCodeCalc = false;
-    public synchronized int hashCode() {
-        if (__hashCodeCalc) {
-            return 0;
-        }
-        __hashCodeCalc = true;
-        int _hashCode = 1;
-        if (getUrl() != null) {
-            _hashCode += getUrl().hashCode();
-        }
-        if (getDescription() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getDescription());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getDescription(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
-        if (getProvider() != null) {
-            _hashCode += getProvider().hashCode();
-        }
-        __hashCodeCalc = false;
-        return _hashCode;
+        _provider = provider;
     }
 }
